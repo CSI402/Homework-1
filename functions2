@@ -30,6 +30,8 @@ logList* sortList(logList* inlist){
     logList* temp1 = inList; logList* temp2 = inList;
     
     while(temp1 != NULL){
+     
+    }
         
     }
 
@@ -39,6 +41,8 @@ void switch(logList* a, logList* b){
     char[20] temp3;
     
     temp1 = a->level; temp2 = a->timeStamp; temp3 = a->message;
+    a->level = b->level; a->timeStamp = b->timeStamp; a->message = b->message;
+    b->level = temp1; b->timeStamp = temp2; b->message = temp3;
     
 }    
     
