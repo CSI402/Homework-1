@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+logList* mergeLists(logList* resultList, logList* inList){
+ 
+    logList* temp = resultList;
+    
+    while(resultList->next != NULL){
+        resultList = resultList->next;
+    }
+    resultList->next = logList->next;
+    return temp;
+}
+
+int listLength(logList* testList){
+    int counter = 0;
+    
+    while(testlist != NULL){
+        counter++;
+        testList = testList->next;
+    }
+    
+    return counter;
+}
+
+logList* sortList(logList* inlist){
+    
+    char[4] year1; char[2] month1; char[2] date1; char[2] hours1; char[2] seconds1; char[2] minutes1;
+    char[4] year2; char[2] month2; char[2] date2; char[2] hours1; char[2] seconds2; char[2] minutes2;
+    
+    logList* temp1 = inList; logList* temp2 = inList;
+    
+    while(temp1 != NULL){
+        
+    }
+
+void switch(logList* a, logList* b){
+    char[20] temp1;
+    char[20] temp2;
+    char[20] temp3;
+    
+    temp1 = a->level; temp2 = a->timeStamp; temp3 = a->message;
+    
+}    
+    
+}
