@@ -1,9 +1,12 @@
 #include <stdio.h>
+#include <string.h>
 //#include "functions1.c"
 //#include "prototypes1.h"
 //#include "functions2.c"
 //#include "prototypes2.h"
 //#include "structs.h"
+
+#define MAX_LEN 100
 
 typedef struct logLine{
   char level[20];
@@ -22,6 +25,8 @@ void deleteList(logList_t* l);
 void printLines(logList_t* l);
 logList_t* mergeLists(logList_t* resultList, logList_t* inList);
 logList_t* sortList(logList_t* inList);
+char line[MAX_LEN];
+int noOfLines = 0;
 
 int main(int argc, char** argv){
   if (argc > 2){
@@ -40,15 +45,14 @@ int main(int argc, char** argv){
     return 0;
   }
   
-  /* HAVEN'T TESTED ANY OF THIS YET
- char[143] line;
   logList_t* list1;
 
-  while(fgets(line, sizeof(line), file1)){
-    list1->line =  parseLine(&line);
+  while(fgets(line, MAX_LEN, file1)){
+    list1->line = parseLine(&line);
     list1 = list1->next;
+    noOfLines++;
   }
-  */
+printf("%d\n", noOfLines );
   
   //WE NEED TO ACTUALLY TEST THE GOD DAMN FUNCTIONS
   //SORRY FOR THE CAPS LOCK AND THE AGGRESSIVE LANGUAGE
@@ -96,7 +100,7 @@ void printLines(logList_t* l){
     current = current->next;
   }
 }
-//////ADD JESS'S OTHER TWO FUNCTIONS OR ELSE YOU'RE GOING TO DIE
+
 struct logList* mergeLists(struct logList* resultList, struct logList* inList){
  
     struct logList* temp = resultList;
@@ -118,6 +122,20 @@ int listLength(struct logList* testList){
     
     return counter;
 }
+void switcher(struct logLine* a, struct logLine* b){
+    char temp1[20];
+    char temp2[20];
+    char temp3[20];
+    
+    //temp1 = a->level; temp2 = a->timeStamp; temp3 = a->message;
+    strcpy(temp1, a->level); strcpy(temp2, a->level); strcpy(temp3, a->level);
+    strcpy(a->level, b->level); strcpy(a->timeStamp, b->timeStamp); 
+    strcpy(a->message, b->message); strcpy(b->level, temp1), strcpy(b->timeStamp, temp2);
+    strcpy(b->message , temp3);    
+   // a->level = b->level; a->timeStamp = b->timeStamp; a->message = b->message;
+    //b->level = temp1; b->timeStamp = temp2; b->message = temp3;
+    
+} 
 
 struct logList* sortList(struct logList* inList){
     
@@ -151,9 +169,9 @@ struct logList* sortList(struct logList* inList){
             strcpy(hours2, strtok(NULL, " "));
             strcpy(minutes2, strtok(NULL, ":"));
             strcpy(seconds2, strtok(NULL, ":"));
-            
+             
             if (strtol(year1) > strtol(year2)){
-                switcher(ptr3, ptr3->next);
+                switcher(ptr1, ptr1->next);
                 switched = 1;
             }
             else if (strtol(year1) == strtol(year2)){
@@ -196,14 +214,5 @@ struct logList* sortList(struct logList* inList){
     return ptr3;
 }
 
-void switcher(struct logLine* a, struct logLine* b){
-    char temp1[20];
-    char temp2[20];
-    char temp3[20];
-    
-    temp1 = a->level; temp2 = a->timeStamp; temp3 = a->message;
-    a->level = b->level; a->timeStamp = b->timeStamp; a->message = b->message;
-    b->level = temp1; b->timeStamp = temp2; b->message = temp3;
-    
-} 
+
 
