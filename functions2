@@ -28,7 +28,7 @@ logList* sortList(logList* inList){
     logList *ptr1;
     logList *ptr2 = NULL;
     
-    char[4] year1; char[2] month1; char[2] date1; char[2] hours1; char[2] seconds1; char[2] minutes1;
+    char[4] year1; char[2] month1; char[2] date1; char[2] hours1; char[2] seconds; char[2] minutes1;
     char[4] year2; char[2] month2; char[2] date2; char[2] hours1; char[2] seconds2; char[2] minutes2;
     
     
@@ -37,6 +37,21 @@ logList* sortList(logList* inList){
         ptr1 = inList;
         
         while(ptr1->next != ptr2) {
+            
+            strcpy(year1, strtok(ptr1->timeStamp, "-"));
+            strcpy(month1, strtok(NULL, "-"));
+            strcpy(date1, strtok(NULL, "-"));
+            strcpy(hours1, strtok(NULL, " "));
+            strcpy(minutes1, strtok(NULL, ":"));
+            strcpy(seconds1, strtok(NULL, ":"));
+            
+            strcpy(year2, strtok((ptr1->next)->timeStamp, "-"));
+            strcpy(month2, strtok(NULL, "-"));
+            strcpy(date2, strtok(NULL, "-"));
+            strcpy(hours2, strtok(NULL, " "));
+            strcpy(minutes2, strtok(NULL, ":"));
+            strcpy(seconds2, strtok(NULL, ":"));
+            
             if (strtol(year1) > strtol(year2)){
                 switch(ptr1, ptr->next);
                 switched = 1;
