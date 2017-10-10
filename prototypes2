@@ -1,0 +1,2 @@
+logList* mergeLists(logList* resultList, logList* inList);
+logList* sortList(logList* inList);
