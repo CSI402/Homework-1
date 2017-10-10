@@ -12,7 +12,7 @@ typedef struct logLine{
   char level[20];
   char timeStamp[20];
   char message[100];
-  struct logLine *next;
+  //struct logLine *next;
 } logLine_t;
 
 typedef struct logList {
@@ -140,7 +140,7 @@ void switcher(struct logLine* a, struct logLine* b){
 struct logList* sortList(struct logList* inList){
     
     int switched = 0;
-    struct logLine *ptr1;
+    struct logLine *ptr1 = inList->line;
     struct logLine *ptr2 = NULL;
     struct logList *ptr3;
     struct logList *ptr4 = NULL;
