@@ -28,14 +28,14 @@ logList_t* sortList(logList_t* inList){
         
         while(ptr1->next != ptr2) {
             
-            strcpy(year1, strtok(ptr1->timeStamp, "-"));
+            strcpy(year1, strtok((ptr1->line)->timeStamp, "-"));
             strcpy(month1, strtok(NULL, "-"));
             strcpy(date1, strtok(NULL, "-"));
             strcpy(hours1, strtok(NULL, " "));
             strcpy(minutes1, strtok(NULL, ":"));
             strcpy(seconds1, strtok(NULL, ":"));
             
-            strcpy(year2, strtok((ptr1->next)->timeStamp, "-"));
+            strcpy(year2, strtok(((ptr1->next)->line)->timeStamp, "-"));
             strcpy(month2, strtok(NULL, "-"));
             strcpy(date2, strtok(NULL, "-"));
             strcpy(hours2, strtok(NULL, " "));
@@ -91,8 +91,8 @@ void switcher(logList_t* a, logList_t* b){
     char[20] temp2;
     char[20] temp3;
     
-    temp1 = a->level; temp2 = a->timeStamp; temp3 = a->message;
-    a->level = b->level; a->timeStamp = b->timeStamp; a->message = b->message;
-    b->level = temp1; b->timeStamp = temp2; b->message = temp3;
+    temp1 = (a->line)->level; temp2 = (a->line)->timeStamp; temp3 = (a->line)->message;
+    (a->line)->level = (b->line)->level; (a->line)->timeStamp = (b->line)->timeStamp; (a->line)->message = (b->line)->message;
+    (b->line)->level = temp1; (b->line)->timeStamp = temp2; (b->line)->message = temp3;
     
 } 
