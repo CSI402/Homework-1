@@ -1,0 +1,44 @@
+//Maybe need stdio.h
+#include "globals.h"
+
+logLine_t * parseLine(char* line){
+  logLine_t * finalLogLine;
+
+  char *pt = strtok(line, ',');
+  int i = 1;
+  while(pt != NULL){
+    if (i==1){
+      finalLogLine->level = pt;
+      i++;
+    }
+    else if (i==2){
+      finalLogLine->timeStamp = pt;
+      i++;
+    }
+    else
+      finalLogLine->message = pt;
+    pt = strtok(NULL, ",");
+  }
+  return finalLogLine;
+}
+
+void deleteList(logList* l){
+  logList_t * current = l;
+  logList_t * next;
+
+  while(current != NULL){
+    next = current->next;
+    free(current);
+    current = next;
+  }
+
+  l = NULL;
+}
+
+void printLines(logList* l){
+  logList_t * current = l;
+  while (current != NULL){
+    printf("%s,%s,%s\n", current->line.level, current->line.timeStamp, current->line.message);
+     current = current->next;
+  }
+}
