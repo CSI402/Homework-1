@@ -17,6 +17,7 @@ logList_t* sortList(logList_t* inList){
     int switched = 0;
     logList_t *ptr1;
     logList_t *ptr2 = NULL;
+    logList_t *ptr3 = inList;
     
     char[4] year1; char[2] month1; char[2] date1; char[2] hours1; char[2] seconds; char[2] minutes1;
     char[4] year2; char[2] month2; char[2] date2; char[2] hours1; char[2] seconds2; char[2] minutes2;
