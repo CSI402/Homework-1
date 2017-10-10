@@ -7,7 +7,7 @@ logList* mergeLists(logList* resultList, logList* inList){
     while(resultList->next != NULL){
         resultList = resultList->next;
     }
-    resultList->next = logList->next;
+    resultList->next = inList;
     return temp;
 }
 
@@ -53,15 +53,48 @@ logList* sortList(logList* inList){
             strcpy(seconds2, strtok(NULL, ":"));
             
             if (strtol(year1) > strtol(year2)){
-                switch(ptr1, ptr->next);
+                switcher(ptr1, ptr1->next);
                 switched = 1;
+            }
+            else if (strtol(year1) == strtol(year2){
+                if(strtol(month1) > strtol(month2)){
+                    switcher(ptr1, ptr1->next);
+                    switched = 1;
+                }
+                else if (strtol(month1) == strtol(month2)){
+                    if(strtol(date1) > strtol(date2)){
+                        switcher(ptr1, ptr1->next);
+                        switched = 1;
+                    }
+                    else if(strtol(date1) == strtol(date2)){
+                        if(strtol(hours1) > strtol(hours2)){
+                            switcher(ptr1, ptr1->next);
+                            switched = 1;
+                        }
+                        else if(strtol(hours1) == strtol(hours2)){
+                            if(strtol(minutes1) > strtol(minute2)){
+                                switcher(ptr1, ptr1->next);
+                                switched = 1;
+                            }
+                            else if (strtol(minutes1) == strtol(minutes2)){
+                                if(strtol(seconds1) > strtol(seconds2)){
+                                    switcher(ptr1, ptr1->next);
+                                    switched = 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                
             }
             ptr1 = ptr1->next;
         }
         ptr2 = ptr1;
     }
+    while(switched);
+}
 
-void switch(logList* a, logList* b){
+void switcher(logList* a, logList* b){
     char[20] temp1;
     char[20] temp2;
     char[20] temp3;
