@@ -12,17 +12,6 @@ logList* mergeLists(logList* resultList, logList* inList){
     return temp;
 }
 
-int listLength(logList* testList){
-    int counter = 0;
-    
-    while(testlist != NULL){
-        counter++;
-        testList = testList->next;
-    }
-    
-    return counter;
-}
-
 logList* sortList(logList* inList){
     
     int switched = 0;
