@@ -92,6 +92,8 @@ logList* sortList(logList* inList){
         ptr2 = ptr1;
     }
     while(switched);
+    
+    return ptr3;
 }
 
 void switcher(logList* a, logList* b){
