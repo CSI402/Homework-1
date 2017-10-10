@@ -11,8 +11,8 @@
 typedef struct logLine{
   char level[20];
   char timeStamp[20];
-  char message[100];
-  //struct logLine *next;
+  char message[MAX_LEN];
+ // struct logLine *next;
 } logLine_t;
 
 typedef struct logList {
@@ -26,7 +26,8 @@ void printLines(logList_t* l);
 logList_t* mergeLists(logList_t* resultList, logList_t* inList);
 logList_t* sortList(logList_t* inList);
 char line[MAX_LEN];
-int noOfLines = 0;
+char line2[MAX_LEN];
+
 
 int main(int argc, char** argv){
   if (argc > 2){
@@ -35,6 +36,7 @@ int main(int argc, char** argv){
 
   FILE *file1 = fopen("test.log", "r");
   FILE *file2 = fopen("test2.log", "r");
+  FILE *combinedList = fopen("inList.log", "w+");
 
   if (file1 == NULL){
     printf("Error: File 'test.log' could not be opened.\n");
@@ -46,13 +48,28 @@ int main(int argc, char** argv){
   }
   
   logList_t* list1;
+  while((fgets(line, MAX_LEN, file1) != NULL) && (fgets(line2, MAX_LEN, file2) )){
+     //parseLine(&line);
+    fputs(line, combinedList);
+    fputs(line2, combinedList);
 
-  while(fgets(line, MAX_LEN, file1)){
+  }
+sortList(combinedList);
+
+  while((fgets(line, MAX_LEN, combinedList)) != NULL){
+    parseLine(line);
+   
+  }
+
+/*
+  while(fgets(line, MAX_LEN, file1) != NULL){
+   // if(strchr(line,'\n'))
+     //    strTempData[strlen(line)-1] = '\0';
     list1->line = parseLine(&line);
     list1 = list1->next;
-    noOfLines++;
+    
   }
-printf("%d\n", noOfLines );
+*/
   
   //WE NEED TO ACTUALLY TEST THE GOD DAMN FUNCTIONS
   //SORRY FOR THE CAPS LOCK AND THE AGGRESSIVE LANGUAGE
@@ -60,6 +77,7 @@ printf("%d\n", noOfLines );
   //FUCK THIS SHIT
 }
 
+//causes segmentation fault
 logLine_t * parseLine(char* line){
   logLine_t * finalLogLine;
 
@@ -75,7 +93,7 @@ logLine_t * parseLine(char* line){
  i++;
     }
     else
-      strncpy(finalLogLine->message, pt, 100);
+      strncpy(finalLogLine->message, pt, MAX_LEN);
     pt = strtok(NULL, ",");
   }
   return finalLogLine;
@@ -140,20 +158,23 @@ void switcher(struct logLine* a, struct logLine* b){
 struct logList* sortList(struct logList* inList){
     
     int switched = 0;
-    struct logLine *ptr1 = inList->line;
+    struct logLine *ptr1= &inList->line;
     struct logLine *ptr2 = NULL;
     struct logList *ptr3;
     struct logList *ptr4 = NULL;
+    struct logList *ptr5 = inList;
     
-    
+    printf("Fuck" );
     char year1[4]; char month1[2]; char date1[2]; char hours1[2]; char seconds1[2]; char minutes1[2];
     char year2[4]; char month2[2]; char date2[2]; char hours2[2]; char seconds2[2]; char minutes2[2];
-    
+    printf("Fuck" );
     
     do{
+      printf("Fuck" );
         switched = 0;
+        printf("Fuck" );
         ptr1 = inList;
-        
+        printf("Fuck" );
         while(ptr3->next != ptr2) {
             
             strcpy(year1, strtok(ptr1->timeStamp, "-"));
@@ -162,41 +183,41 @@ struct logList* sortList(struct logList* inList){
             strcpy(hours1, strtok(NULL, " "));
             strcpy(minutes1, strtok(NULL, ":"));
             strcpy(seconds1, strtok(NULL, ":"));
-            
-            strcpy(year2, strtok((ptr1->next)->timeStamp, "-"));
+            printf("Fuck" );
+            strcpy(year2, strtok(((ptr5->next)->line.timeStamp), "-"));
             strcpy(month2, strtok(NULL, "-"));
             strcpy(date2, strtok(NULL, "-"));
             strcpy(hours2, strtok(NULL, " "));
             strcpy(minutes2, strtok(NULL, ":"));
             strcpy(seconds2, strtok(NULL, ":"));
-             
+            
             if (strtol(year1) > strtol(year2)){
-                switcher(ptr1, ptr1->next);
+                switcher(ptr5, ptr5->next);
                 switched = 1;
             }
             else if (strtol(year1) == strtol(year2)){
                 if(strtol(month1) > strtol(month2)){
-                    switcher(ptr3, ptr3->next);
+                    switcher(ptr5, ptr5->next);
                     switched = 1;
                 }
                 else if (strtol(month1) == strtol(month2)){
                     if(strtol(date1) > strtol(date2)){
-                        switcher(ptr3, ptr3->next);
+                        switcher(ptr5, ptr5->next);
                         switched = 1;
                     }
                     else if(strtol(date1) == strtol(date2)){
                         if(strtol(hours1) > strtol(hours2)){
-                            switcher(ptr3, ptr3->next);
+                            switcher(ptr5, ptr5->next);
                             switched = 1;
                         }
                         else if(strtol(hours1) == strtol(hours2)){
                             if(strtol(minutes1) > strtol(minutes2)){
-                                switcher(ptr3, ptr3->next);
+                                switcher(ptr5, ptr5->next);
                                 switched = 1;
                             }
                             else if (strtol(minutes1) == strtol(minutes2)){
                                 if(strtol(seconds1) > strtol(seconds2)){
-                                    switcher(ptr3, ptr3->next);
+                                    switcher(ptr5, ptr5->next);
                                     switched = 1;
                                 }
                             }
