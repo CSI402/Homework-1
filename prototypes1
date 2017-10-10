@@ -1,0 +1,3 @@
+logLine* parseLine(char* line);
+void deleteList(logList* l);
+void printLines(logList* l);
