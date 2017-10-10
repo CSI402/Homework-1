@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
-logList* mergeLists(logList* resultList, logList* inList){
+logList_t* mergeLists(logList_t* resultList, logList_t* inList){
  
-    logList* temp = resultList;
+    logList_t* temp = resultList;
     
     while(resultList->next != NULL){
         resultList = resultList->next;
@@ -12,11 +12,11 @@ logList* mergeLists(logList* resultList, logList* inList){
     return temp;
 }
 
-logList* sortList(logList* inList){
+logList_t* sortList(logList_t* inList){
     
     int switched = 0;
-    logList *ptr1;
-    logList *ptr2 = NULL;
+    logList_t *ptr1;
+    logList_t *ptr2 = NULL;
     
     char[4] year1; char[2] month1; char[2] date1; char[2] hours1; char[2] seconds; char[2] minutes1;
     char[4] year2; char[2] month2; char[2] date2; char[2] hours1; char[2] seconds2; char[2] minutes2;
@@ -86,7 +86,7 @@ logList* sortList(logList* inList){
     return ptr3;
 }
 
-void switcher(logList* a, logList* b){
+void switcher(logList_t* a, logList_t* b){
     char[20] temp1;
     char[20] temp2;
     char[20] temp3;
